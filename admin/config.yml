@@ -1,0 +1,187 @@
+# Decap CMS configuration for enlivenup.org
+# Editors log in at /admin with Netlify Identity. Every "Publish" becomes a
+# commit on the main branch, which Netlify redeploys automatically.
+
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    update: "Update {{collection}}: {{slug}} (via CMS by {{author-name}})"
+    uploadMedia: "Upload {{path}} (via CMS by {{author-name}})"
+    deleteMedia: "Delete {{path}} (via CMS by {{author-name}})"
+
+# Lets `npx decap-server` edit the files directly when the site is opened on
+# localhost. Ignored on the live site.
+local_backend: true
+
+site_url: https://enlivenup.org
+display_url: https://enlivenup.org
+logo_url: /assets/enliven-logo.avif
+
+# Default upload location (photos). Videos override this per field.
+media_folder: photos
+public_folder: /photos
+
+collections:
+  - name: content
+    label: Website content
+    description: Each section of the site is one page here. Change what you need and press Publish.
+    format: json
+    editor:
+      preview: false
+    files:
+
+      # ------------------------------------------------------------------ site
+      - name: site
+        label: Contact & settings
+        file: content/site.json
+        fields:
+          - { label: "Sign-up form link", name: signupUrl, widget: string, pattern: ['^https?://', "Must start with http:// or https://"], hint: "Every Sign up button on the site opens this link." }
+          - { label: "Email", name: email, widget: string, pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', "Must be a valid email address"] }
+          - { label: "Phone (as shown)", name: phone, widget: string, hint: "Example: 617-501-6586" }
+          - { label: "Phone link", name: phoneHref, widget: string, required: false, hint: "Optional. What phones dial when the number is tapped, e.g. tel:+16175016586. Leave blank to build it from the phone number above." }
+          - { label: "Location line", name: location, widget: string, hint: "Shown in the footer, e.g. Newton, MA · Serving Greater Boston" }
+          - { label: "Footer note", name: footerNote, widget: string, hint: "e.g. © 2026 Enliven. A student-led nonprofit." }
+          - { label: "Sun rays intensity", name: sunIntensity, widget: number, value_type: float, min: 0, max: 1, step: 0.05, default: 0.4, hint: "How strong the gold sun rays behind the home headline are. 0 hides them, 1 is full strength." }
+
+      # ------------------------------------------------------------------ home
+      - name: home
+        label: Home page
+        file: content/home.json
+        fields:
+          - label: "Headline"
+            name: heroTitle
+            widget: object
+            hint: "The three lines of the big headline. The last line is shown in coral."
+            fields:
+              - { label: "Line 1", name: line1, widget: string }
+              - { label: "Line 2", name: line2, widget: string, hint: "\"intergenerational\" is automatically allowed to break as inter-/generational on phones." }
+              - { label: "Line 3 (coral)", name: line3, widget: string }
+          - { label: "Intro paragraph", name: heroSubtitle, widget: text }
+          - { label: "Note under the Sign up button", name: heroNote, widget: string, hint: "The email address is added after this automatically." }
+          - label: "Hero photos"
+            name: heroPhotos
+            widget: list
+            summary: "{{fields.alt}}"
+            hint: "Three photos work best. The middle one is shown taller."
+            fields:
+              - { label: "Photo", name: src, widget: image }
+              - { label: "Description (for screen readers)", name: alt, widget: string, hint: "Describe the photo in a few words for visitors who cannot see it." }
+              - { label: "Focus point", name: position, widget: string, required: false, hint: "Optional. Which part of the photo to keep visible when cropped, e.g. 50% 30% keeps the upper part. Leave blank for the centre." }
+          - label: "Numbers"
+            name: stats
+            widget: list
+            summary: "{{fields.value}} {{fields.label}}"
+            hint: "Three big numbers. A trailing + is shown in coral."
+            fields:
+              - { label: "Number", name: value, widget: string, hint: "e.g. 1,000+" }
+              - { label: "Label", name: label, widget: string, hint: "e.g. Seniors reached" }
+          - { label: "Mission heading", name: missionTitle, widget: string }
+          - { label: "Mission text", name: missionBody, widget: text, hint: "Leave an empty line between paragraphs." }
+          - label: "Featured quote"
+            name: featuredQuote
+            widget: object
+            fields:
+              - { label: "Quote", name: text, widget: text }
+              - { label: "Attribution", name: attribution, widget: string, hint: "e.g. Dr. Vivek Murthy — U.S. Surgeon General, Dec 2024" }
+          - { label: "Recent moments heading", name: recentMomentsTitle, widget: string }
+          - label: "Recent moments photos"
+            name: recentMoments
+            widget: list
+            summary: "{{fields.alt}}"
+            hint: "Four photos work best."
+            fields:
+              - { label: "Photo", name: src, widget: image }
+              - { label: "Description (for screen readers)", name: alt, widget: string }
+          - { label: "Partners label", name: partnersLabel, widget: string }
+          - label: "Partners"
+            name: partners
+            widget: list
+            hint: "One partner community per item."
+            field: { label: "Partner", name: partner, widget: string }
+
+      # ----------------------------------------------------------------- about
+      - name: about
+        label: About page
+        file: content/about.json
+        fields:
+          - { label: "Heading, first part", name: titleStart, widget: string, hint: "The heading reads: first part + coral word + last part." }
+          - { label: "Heading, coral word", name: titleAccent, widget: string }
+          - { label: "Heading, last part", name: titleEnd, widget: string }
+          - { label: "About text", name: body, widget: text, hint: "Leave an empty line between paragraphs." }
+          - label: "Large photo"
+            name: heroPhoto
+            widget: object
+            fields:
+              - { label: "Photo", name: src, widget: image }
+              - { label: "Description (for screen readers)", name: alt, widget: string }
+          - { label: "Founded (year)", name: estYear, widget: string, hint: "Shown as Est. followed by this." }
+          - { label: "Founded note", name: estNote, widget: string }
+          - { label: "Team heading", name: teamTitle, widget: string }
+          - label: "Team members"
+            name: team
+            widget: list
+            summary: "{{fields.name}} — {{fields.school}}"
+            hint: "Add, remove or drag to reorder. Square photos look best; they are shown at 160×160."
+            fields:
+              - { label: "Name", name: name, widget: string }
+              - { label: "School / role", name: school, widget: string, hint: "e.g. Milton Academy · Class of ’27" }
+              - { label: "Bio", name: bio, widget: text }
+              - { label: "Photo", name: photo, widget: image }
+              - { label: "Photo focus point", name: photoPosition, widget: string, required: false, hint: "Optional. e.g. 50% 20% keeps the top of the photo (good for faces). Leave blank for the centre." }
+
+      # --------------------------------------------------------------- gallery
+      - name: gallery
+        label: Gallery
+        file: content/gallery.json
+        fields:
+          - { label: "Heading", name: title, widget: string }
+          - label: "Photos"
+            name: photos
+            widget: list
+            summary: "{{fields.alt}}"
+            collapsed: true
+            minimize_collapsed: true
+            hint: "Shown in this order, with a video slipped in after every two photos. Drag to reorder."
+            fields:
+              - { label: "Photo", name: src, widget: image }
+              - { label: "Description (for screen readers)", name: alt, widget: string }
+          - label: "Videos"
+            name: videos
+            widget: list
+            summary: "{{fields.alt}}"
+            collapsed: true
+            minimize_collapsed: true
+            hint: "MP4 files. Keep clips short; files over ~25 MB make the page slow."
+            fields:
+              - { label: "Video file (MP4)", name: src, widget: file, media_folder: videos, public_folder: /videos }
+              - { label: "Cover image", name: poster, widget: image, required: false, media_folder: videos, public_folder: /videos, hint: "Optional. A JPG shown before the video plays. If left blank the first frame of the video is used." }
+              - { label: "Length in seconds", name: durationSeconds, widget: number, value_type: int, min: 1, required: false, hint: "Optional. Shown as a badge on the video. If left blank it is read from the file." }
+              - { label: "Description (for screen readers)", name: alt, widget: string }
+
+      # ---------------------------------------------------------- testimonials
+      - name: testimonials
+        label: Testimonials page
+        file: content/testimonials.json
+        fields:
+          - { label: "Heading, first part", name: titleStart, widget: string }
+          - { label: "Heading, coral part", name: titleAccent, widget: string }
+          - label: "Featured testimonial"
+            name: featured
+            widget: object
+            fields:
+              - { label: "Quote", name: quote, widget: text }
+              - { label: "Name", name: name, widget: string }
+              - { label: "Role / community", name: role, widget: string, hint: "e.g. Resident · North Hill, Needham" }
+              - { label: "Photo", name: photo, widget: image }
+              - { label: "Photo description (for screen readers)", name: photoAlt, widget: string }
+          - label: "Testimonial cards"
+            name: cards
+            widget: list
+            summary: "{{fields.label}} — {{fields.attribution}}"
+            hint: "Add as many as you like. Quotation marks are added automatically."
+            fields:
+              - { label: "Label (coral, above the quote)", name: label, widget: string, hint: "e.g. North Hill" }
+              - { label: "Quote", name: quote, widget: text }
+              - { label: "Attribution", name: attribution, widget: string, hint: "e.g. Sandy Bertman · North Hill" }
+          - { label: "Bottom call-to-action heading", name: ctaTitle, widget: string }

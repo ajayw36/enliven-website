@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Enliven — Content Manager</title>
+<link rel="icon" href="/assets/enliven-logo.avif">
+<!-- Netlify Identity: handles login and the invite / password-recovery links. -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+<!-- Decap CMS reads admin/config.yml and edits the JSON files in /content via Git Gateway. -->
+<script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+<script>
+  // After an editor logs out, send them back to the login screen instead of a blank page.
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('logout', function () { document.location.href = '/admin/'; });
+  }
+</script>
+</body>
+</html>
