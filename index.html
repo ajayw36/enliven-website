@@ -7,11 +7,20 @@
 <meta name="description" content="Enliven is a student-led nonprofit bringing live music, dance and art performances to senior communities across Greater Boston.">
 <link rel="icon" href="assets/enliven-logo.avif">
 <script src="./support.js"></script>
+<script>
+// Netlify Identity invite / recovery links land on the site root with a token in the hash.
+// Hand them to the CMS page, which loads the Identity widget and completes the sign-up.
+if (/^#(invite|recovery|confirmation|email_change)_token=/.test(location.hash)) location.replace('/admin/' + location.hash);
+</script>
 </head>
 <body>
 <x-dc>
-<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&amp;family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"><script src="./image-slot.js"></script><style>html{scroll-behavior:auto}body{margin:0;background:#FBF6EE;color:#1B1815;font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:hover{color:#C9573C}button{font:inherit;cursor:pointer}img{display:block}@keyframes fadein{from{opacity:0}to{opacity:1}}</style></helmet>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&amp;family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"><style>html{scroll-behavior:auto}body{margin:0;background:#FBF6EE;color:#1B1815;font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:hover{color:#C9573C}button{font:inherit;cursor:pointer}img{display:block}@keyframes fadein{from{opacity:0}to{opacity:1}}</style></helmet>
 <div style="min-height:100vh;display:flex;flex-direction:column;background:#FBF6EE;color:#1B1815;font-family:'Nunito Sans',sans-serif">
+<sc-if value="{{ loadError }}" hint-placeholder-val="{{ false }}">
+<p style="margin:40px auto;font:16px/1.5 'Nunito Sans',sans-serif;color:#6B625A;text-align:center">The site content could not be loaded. Please refresh the page.</p>
+</sc-if>
+<sc-if value="{{ loaded }}" hint-placeholder-val="{{ true }}">
 
 <header style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px 24px;padding:10px clamp(20px,4vw,40px);border-bottom:1px solid rgba(27,24,21,.12);background:#FBF6EE;position:sticky;top:0;z-index:20">
   <a href="#home" style="display:block"><img src="assets/enliven-logo.avif" alt="Enliven" style="height:60px;mix-blend-mode:multiply"></a>
@@ -31,40 +40,39 @@
 <section data-screen-label="Home" style="animation:fadein .35s ease">
   <div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,40px) 40px;position:relative;overflow:hidden">
     <div style="position:absolute;left:50%;top:-22vw;width:80vw;height:80vw;min-width:560px;min-height:560px;transform:translateX(-50%);border-radius:50%;background:repeating-conic-gradient(from 0deg,#F3C54E 0 1.4deg,transparent 1.4deg 7.5deg);mask-image:radial-gradient(circle,transparent 24%,#000 25%,#000 48%,transparent 49%);-webkit-mask-image:radial-gradient(circle,transparent 24%,#000 25%,#000 48%,transparent 49%);opacity: {{ sunOpacity }};pointer-events:none"></div>
-    <h1 style="position:relative;font:700 clamp(44px,8vw,104px)/0.95 'Josefin Sans',sans-serif;margin:0;letter-spacing:-.01em;text-transform:uppercase;text-align:center;text-wrap:balance;overflow-wrap:anywhere">Inspiring<br>inter­generational<br><span style="color:#C9573C">connections</span></h1>
-    <p style="position:relative;font:400 clamp(17px,1.6vw,20px)/1.5 'Nunito Sans',sans-serif;color:#6B625A;margin:28px auto 0;max-width:620px;text-align:center;text-wrap:pretty">Student musicians, dancers and artists bring live performances to senior communities across Greater Boston and leave with friendships, stories and wisdom in return.</p>
+    <h1 style="position:relative;font:700 clamp(44px,8vw,104px)/0.95 'Josefin Sans',sans-serif;margin:0;letter-spacing:-.01em;text-transform:uppercase;text-align:center;text-wrap:balance;overflow-wrap:anywhere">{{ heroLine1 }}<br>{{ heroLine2 }}<br><span style="color:#C9573C">{{ heroLine3 }}</span></h1>
+    <p style="position:relative;font:400 clamp(17px,1.6vw,20px)/1.5 'Nunito Sans',sans-serif;color:#6B625A;margin:28px auto 0;max-width:620px;text-align:center;text-wrap:pretty">{{ home.heroSubtitle }}</p>
     <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:32px">
       <a href="{{ signupUrl }}" target="_blank" rel="noopener" style="padding:20px 36px 17px;border-radius:999px;background:#EF7F63;color:#1B1815;font:700 15px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase" style-hover="background:#E86E50;color:#1B1815">Sign up</a>
-      <span style="font:600 15px 'Nunito Sans',sans-serif;color:#6B625A;text-align:center">Students and senior communities welcome · <a href="mailto:info@enlivenup.org" style="color:#1B1815;border-bottom:1px solid rgba(27,24,21,.3)">info@enlivenup.org</a></span>
+      <span style="font:600 15px 'Nunito Sans',sans-serif;color:#6B625A;text-align:center">{{ home.heroNote }} · <a href="{{ emailHref }}" style="color:#1B1815;border-bottom:1px solid rgba(27,24,21,.3)">{{ site.email }}</a></span>
     </div>
   </div>
   <div style="padding:0 clamp(20px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;align-items:end">
-    <img src="photos/img-0419.jpg" alt="Student dancers performing for residents" style="width:100%;height:280px;object-fit:cover;border-radius:16px">
-    <img src="photos/img-3663.jpg" alt="A student greeting a resident after a performance" style="width:100%;height:360px;object-fit:cover;object-position:50% 30%;border-radius:16px">
-    <img src="photos/img-9916.jpg" alt="Student singer with piano accompaniment" style="width:100%;height:280px;object-fit:cover;border-radius:16px">
+    <sc-for list="{{ heroPhotos }}" as="ph" hint-placeholder-count="3">
+      <img src="{{ ph.src }}" alt="{{ ph.alt }}" style="{{ ph.style }}">
+    </sc-for>
   </div>
   <div style="margin:56px clamp(20px,4vw,40px) 0;padding:44px 0;border-top:1px solid rgba(27,24,21,.15);border-bottom:1px solid rgba(27,24,21,.15);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px 24px">
-    <div><div style="font:700 clamp(56px,7.5vw,104px)/0.9 'Josefin Sans',sans-serif">1,000<span style="color:#C9573C">+</span></div><div style="font:700 14px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;margin-top:14px">Seniors reached</div></div>
-    <div><div style="font:700 clamp(56px,7.5vw,104px)/0.9 'Josefin Sans',sans-serif">50<span style="color:#C9573C">+</span></div><div style="font:700 14px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;margin-top:14px">Students engaged</div></div>
-    <div><div style="font:700 clamp(56px,7.5vw,104px)/0.9 'Josefin Sans',sans-serif">30<span style="color:#C9573C">+</span></div><div style="font:700 14px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;margin-top:14px">Events organized</div></div>
+    <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+      <div><div style="font:700 clamp(56px,7.5vw,104px)/0.9 'Josefin Sans',sans-serif">{{ s.number }}<span style="color:#C9573C">{{ s.suffix }}</span></div><div style="font:700 14px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;margin-top:14px">{{ s.label }}</div></div>
+    </sc-for>
   </div>
   <div style="padding:clamp(48px,6vw,80px) clamp(20px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px 64px;align-items:start">
-    <h2 style="font:700 clamp(36px,4.5vw,56px)/0.98 'Josefin Sans',sans-serif;margin:0;text-transform:uppercase;text-wrap:balance">YOUTH AND ELDERS, TOGETHER IN ONE ROOM</h2>
-    <div><div style="font:18px/1.6 'Nunito Sans',sans-serif;color:#6B625A;margin:0 0 20px;text-wrap:pretty"><div>We believe that intergenerational connections are key to creating a vibrant and connected community. Our programs and initiatives are designed to bring youth and elders together, fostering relationships that bring joy and meaning to all involved.</div></div><p style="font:18px/1.6 'Nunito Sans',sans-serif;color:#6B625A;margin:0 0 28px;text-wrap:pretty">Whether you're a student who wants to perform or a community that wants to host, we would love to hear from you!</p><div style="display:flex;flex-wrap:wrap;gap:20px 28px;align-items:center"><a href="{{ signupUrl }}" target="_blank" rel="noopener" style="padding:16px 28px 13px;border-radius:999px;background:#EF7F63;color:#1B1815;font:700 13px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase" style-hover="background:#E86E50;color:#1B1815">Sign up</a><a href="#about" style="font:700 13px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid #1B1815;padding:4px 0">More about us</a></div></div>
+    <h2 style="font:700 clamp(36px,4.5vw,56px)/0.98 'Josefin Sans',sans-serif;margin:0;text-transform:uppercase;text-wrap:balance">{{ home.missionTitle }}</h2>
+    <div><sc-for list="{{ missionParas }}" as="para" hint-placeholder-count="2"><p style="{{ para.style }}">{{ para.text }}</p></sc-for><div style="display:flex;flex-wrap:wrap;gap:20px 28px;align-items:center"><a href="{{ signupUrl }}" target="_blank" rel="noopener" style="padding:16px 28px 13px;border-radius:999px;background:#EF7F63;color:#1B1815;font:700 13px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase" style-hover="background:#E86E50;color:#1B1815">Sign up</a><a href="#about" style="font:700 13px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid #1B1815;padding:4px 0">More about us</a></div></div>
   </div>
   <div style="margin:0 clamp(20px,4vw,40px);padding:clamp(36px,5vw,72px) clamp(24px,5vw,64px);border-radius:24px;background:#fff;display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,3vw,32px);align-items:start">
     <div style="font:700 clamp(96px,12vw,180px)/0.6 'Josefin Sans',sans-serif;color:#C9573C">“</div>
-    <div><p style="font:700 clamp(22px,2.6vw,32px)/1.25 'Josefin Sans',sans-serif;margin:0 0 24px;text-wrap:pretty">Thank you for everything you're doing to build in-person community and to bring joy into people's lives. It was so clear how much people enjoy the experience you have created.</p><div style="font:700 13px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase">Dr. Vivek Murthy — U.S. Surgeon General, Dec 2024</div></div>
+    <div><p style="font:700 clamp(22px,2.6vw,32px)/1.25 'Josefin Sans',sans-serif;margin:0 0 24px;text-wrap:pretty">{{ home.featuredQuote.text }}</p><div style="font:700 13px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase">{{ home.featuredQuote.attribution }}</div></div>
   </div>
   <div style="padding:clamp(48px,6vw,80px) clamp(20px,4vw,40px)">
-    <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 24px;margin-bottom:20px"><h2 style="font:700 clamp(30px,3.5vw,40px) 'Josefin Sans',sans-serif;margin:0;text-transform:uppercase">Recent moments</h2><a href="#gallery" style="font:700 13px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;border-bottom:2px solid #1B1815;padding:4px 0">Full gallery</a></div>
+    <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 24px;margin-bottom:20px"><h2 style="font:700 clamp(30px,3.5vw,40px) 'Josefin Sans',sans-serif;margin:0;text-transform:uppercase">{{ home.recentMomentsTitle }}</h2><a href="#gallery" style="font:700 13px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;border-bottom:2px solid #1B1815;padding:4px 0">Full gallery</a></div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px">
-      <img src="photos/img-9909.jpg" alt="A student and resident in conversation" style="width:100%;height:240px;object-fit:cover;border-radius:16px">
-      <img src="photos/img-9939.jpg" alt="Dancer with a young guest at the art table" style="width:100%;height:240px;object-fit:cover;border-radius:16px">
-      <img src="photos/img-3344.jpg" alt="Students and residents gathered after the show" style="width:100%;height:240px;object-fit:cover;border-radius:16px">
-      <img src="photos/img-9922.jpg" alt="Residents enjoying a performance" style="width:100%;height:240px;object-fit:cover;border-radius:16px">
+      <sc-for list="{{ home.recentMoments }}" as="m" hint-placeholder-count="4">
+        <img src="{{ m.src }}" alt="{{ m.alt }}" style="width:100%;height:240px;object-fit:cover;border-radius:16px">
+      </sc-for>
     </div>
-    <div style="margin-top:40px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;font:700 13px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#6B625A"><span style="color:#1B1815">Partners</span><span>Sunrise of Newton</span><span>Fox Hill Village</span><span>North Hill</span><span>Waterstone at Wellesley</span></div>
+    <div style="margin-top:40px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;font:700 13px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#6B625A"><span style="color:#1B1815">{{ home.partnersLabel }}</span><sc-for list="{{ home.partners }}" as="partner" hint-placeholder-count="4"><span>{{ partner }}</span></sc-for></div>
   </div>
 </section>
 </sc-if>
@@ -72,40 +80,22 @@
 <!-- ===== ABOUT ===== -->
 <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
 <section data-screen-label="About" style="animation:fadein .35s ease">
-  <div style="padding:clamp(48px,7vw,72px) clamp(20px,4vw,40px) 48px;text-align:center"><h1 style="font:700 clamp(40px,6vw,72px)/0.98 'Josefin Sans',sans-serif;margin:0 auto 28px;text-transform:uppercase;max-width:960px;text-wrap:balance;overflow-wrap:anywhere">Inter­generational connection makes a <span style="color:#C9573C">vibrant</span> community.</h1><div style="font:clamp(17px,1.6vw,20px)/1.55 'Nunito Sans',sans-serif;color:#6B625A;margin:0 auto;max-width:720px;text-wrap:pretty"><div>At Enliven, we are dedicated to help bridge the gap between elders and youth through meaningful exchange. We create concerts and performances small and large to engage seniors of all abilities.</div><div><br></div><div>Youth share their musical talents and cultural perspectives to entertain and uplift their audiences. Elders share their love, wisdom and support to the students. This exchange offers an enriching experience for both the elders and the youth, helping create special bonds and memories for all.</div></div></div>
+  <div style="padding:clamp(48px,7vw,72px) clamp(20px,4vw,40px) 48px;text-align:center"><h1 style="font:700 clamp(40px,6vw,72px)/0.98 'Josefin Sans',sans-serif;margin:0 auto 28px;text-transform:uppercase;max-width:960px;text-wrap:balance;overflow-wrap:anywhere">{{ aboutTitleStart }} <span style="color:#C9573C">{{ about.titleAccent }}</span> {{ about.titleEnd }}</h1><div style="font:clamp(17px,1.6vw,20px)/1.55 'Nunito Sans',sans-serif;color:#6B625A;margin:0 auto;max-width:720px;text-wrap:pretty"><sc-for list="{{ aboutParas }}" as="para" hint-placeholder-count="2"><sc-if value="{{ para.sep }}" hint-placeholder-val="{{ false }}"><div><br></div></sc-if><div>{{ para.text }}</div></sc-for></div></div>
   <div style="padding:0 clamp(20px,4vw,40px) clamp(48px,6vw,80px);display:grid;grid-template-columns:minmax(0,2fr) minmax(220px,1fr);gap:16px">
-    <img src="photos/img-9911.jpg" alt="Students and residents gathered together after a performance" style="width:100%;height:420px;object-fit:cover;border-radius:16px">
-    <div style="min-height:300px;height:420px;box-sizing:border-box;border-radius:16px;background:#fff;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;justify-content:flex-end"><div style="font:700 clamp(56px,6vw,72px)/0.9 'Josefin Sans',sans-serif">Est.<br>2023</div><div style="font:16px/1.5 'Nunito Sans',sans-serif;color:#6B625A;margin-top:16px">Founded by students in Newton, MA. Now across Greater Boston.</div></div>
+    <img src="{{ about.heroPhoto.src }}" alt="{{ about.heroPhoto.alt }}" style="width:100%;height:420px;object-fit:cover;border-radius:16px">
+    <div style="min-height:300px;height:420px;box-sizing:border-box;border-radius:16px;background:#fff;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;justify-content:flex-end"><div style="font:700 clamp(56px,6vw,72px)/0.9 'Josefin Sans',sans-serif">Est.<br>{{ about.estYear }}</div><div style="font:16px/1.5 'Nunito Sans',sans-serif;color:#6B625A;margin-top:16px">{{ about.estNote }}</div></div>
   </div>
   
-  <div style="margin:0 clamp(20px,4vw,40px);padding:clamp(48px,6vw,72px) 0 clamp(48px,6vw,80px);border-top:1px solid rgba(27,24,21,.15)">
+  <div id="team" style="margin:0 clamp(20px,4vw,40px);padding:clamp(48px,6vw,72px) 0 clamp(48px,6vw,80px);border-top:1px solid rgba(27,24,21,.15)">
     
-    <h2 style="font:700 clamp(30px,3.8vw,44px) 'Josefin Sans',sans-serif;margin:0 0 40px;text-transform:uppercase">OUR TEAM</h2>
+    <h2 style="font:700 clamp(30px,3.8vw,44px) 'Josefin Sans',sans-serif;margin:0 0 40px;text-transform:uppercase">{{ about.teamTitle }}</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px">
+      <sc-for list="{{ team }}" as="t" hint-placeholder-count="1">
       <div style="display:flex;flex-direction:column;gap:18px">
-        <img id="team-aria" src="photos/team-aria.png" alt="Aria Malhotra" style="width:160px;height:160px;object-fit:cover;object-position:50% 20%;border-radius:16px">
-        <div><h3 style="font:700 22px 'Josefin Sans',sans-serif;margin:0 0 4px;text-transform:uppercase">Aria Malhotra</h3><div style="font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B625A;margin-bottom:12px">Milton Academy · Class of ’27</div><p style="font:16px/1.6 'Nunito Sans',sans-serif;color:#6B625A;margin:0;text-wrap:pretty">I enjoy songwriting, singing, and playing basketball and the piano, as well as spending time with friends and family. I value building strong connections within and between communities, whether at school, sports, a women’s shelter where I volunteer, or Enliven!</p></div>
+        <img src="{{ t.photo }}" alt="{{ t.name }}" style="{{ t.photoStyle }}">
+        <div><h3 style="font:700 22px 'Josefin Sans',sans-serif;margin:0 0 4px;text-transform:uppercase">{{ t.name }}</h3><div style="font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B625A;margin-bottom:12px">{{ t.school }}</div><p style="font:16px/1.6 'Nunito Sans',sans-serif;color:#6B625A;margin:0;text-wrap:pretty;white-space:pre-line">{{ t.bio }}</p></div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:18px">
-        <image-slot id="team-2" shape="rounded" radius="16" placeholder="Drop photo" style="width:160px;height:160px"></image-slot>
-        <div><h3 style="font:700 22px 'Josefin Sans',sans-serif;margin:0 0 4px;text-transform:uppercase">Name</h3><div style="font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B625A;margin-bottom:12px">School · Class of ’00</div><p style="font:16px/1.6 'Nunito Sans',sans-serif;color:#6B625A;margin:0;text-wrap:pretty">Short bio — a few sentences about what they love and why they volunteer with Enliven.</p></div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:18px">
-        <image-slot id="team-3" shape="rounded" radius="16" placeholder="Drop photo" style="width:160px;height:160px"></image-slot>
-        <div><h3 style="font:700 22px 'Josefin Sans',sans-serif;margin:0 0 4px;text-transform:uppercase">Name</h3><div style="font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B625A;margin-bottom:12px">School · Class of ’00</div><p style="font:16px/1.6 'Nunito Sans',sans-serif;color:#6B625A;margin:0;text-wrap:pretty">Short bio — a few sentences about what they love and why they volunteer with Enliven.</p></div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:18px">
-        <image-slot id="team-4" shape="rounded" radius="16" placeholder="Drop photo" style="width:160px;height:160px"></image-slot>
-        <div><h3 style="font:700 22px 'Josefin Sans',sans-serif;margin:0 0 4px;text-transform:uppercase">Name</h3><div style="font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B625A;margin-bottom:12px">School · Class of ’00</div><p style="font:16px/1.6 'Nunito Sans',sans-serif;color:#6B625A;margin:0;text-wrap:pretty">Short bio — a few sentences about what they love and why they volunteer with Enliven.</p></div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:18px">
-        <image-slot id="team-5" shape="rounded" radius="16" placeholder="Drop photo" style="width:160px;height:160px"></image-slot>
-        <div><h3 style="font:700 22px 'Josefin Sans',sans-serif;margin:0 0 4px;text-transform:uppercase">Name</h3><div style="font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B625A;margin-bottom:12px">School · Class of ’00</div><p style="font:16px/1.6 'Nunito Sans',sans-serif;color:#6B625A;margin:0;text-wrap:pretty">Short bio — a few sentences about what they love and why they volunteer with Enliven.</p></div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:18px">
-        <image-slot id="team-6" shape="rounded" radius="16" placeholder="Drop photo" style="width:160px;height:160px"></image-slot>
-        <div><h3 style="font:700 22px 'Josefin Sans',sans-serif;margin:0 0 4px;text-transform:uppercase">Name</h3><div style="font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B625A;margin-bottom:12px">School · Class of ’00</div><p style="font:16px/1.6 'Nunito Sans',sans-serif;color:#6B625A;margin:0;text-wrap:pretty">Short bio — a few sentences about what they love and why they volunteer with Enliven.</p></div>
-      </div>
+      </sc-for>
     </div>
   </div>
 </section>
@@ -115,15 +105,22 @@
 <sc-if value="{{ isGallery }}" hint-placeholder-val="{{ false }}">
 <section data-screen-label="Gallery" style="animation:fadein .35s ease">
   <div style="padding:clamp(40px,6vw,64px) clamp(20px,4vw,40px) 32px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px 32px">
-    <div><h1 style="font:700 clamp(56px,10vw,120px)/0.85 'Josefin Sans',sans-serif;margin:0;text-transform:uppercase">Gallery</h1></div>
+    <div><h1 style="font:700 clamp(56px,10vw,120px)/0.85 'Josefin Sans',sans-serif;margin:0;text-transform:uppercase">{{ gallery.title }}</h1></div>
   </div>
   <div style="padding:0 clamp(20px,4vw,40px) clamp(48px,6vw,80px);columns:3 280px;column-gap:14px">
     <sc-for list="{{ photos }}" as="p" hint-placeholder-count="9">
       <button onClick="{{ p.open }}" aria-label="{{ p.label }}" style="display:block;width:100%;padding:0;border:0;background:none;margin:0 0 14px;break-inside:avoid;border-radius:16px;overflow:hidden;position:relative;cursor:pointer" style-hover="opacity:.92">
-        <img src="{{ p.poster }}" alt="{{ p.alt }}" loading="lazy" style="width:100%;height:auto;display:block">
+        <sc-if value="{{ p.hasPoster }}" hint-placeholder-val="{{ true }}">
+          <img src="{{ p.poster }}" alt="{{ p.alt }}" loading="lazy" style="width:100%;height:auto;display:block">
+        </sc-if>
+        <sc-if value="{{ p.noPoster }}" hint-placeholder-val="{{ false }}">
+          <video src="{{ p.previewSrc }}" preload="metadata" muted="{{ true }}" playsInline="{{ true }}" aria-label="{{ p.alt }}" style="width:100%;height:auto;display:block;pointer-events:none"></video>
+        </sc-if>
         <sc-if value="{{ p.isVideo }}" hint-placeholder-val="{{ false }}">
           <span style="position:absolute;inset:0;display:grid;place-items:center;background:rgba(27,24,21,.18)"><span style="width:64px;height:64px;border-radius:50%;background:#EF7F63;color:#1B1815;display:grid;place-items:center;font:700 22px 'Josefin Sans',sans-serif;padding-left:5px;box-shadow:0 8px 24px rgba(0,0,0,.25)">▶</span></span>
+          <sc-if value="{{ p.duration }}" hint-placeholder-val="{{ true }}">
           <span style="position:absolute;right:12px;bottom:12px;padding:6px 10px 4px;border-radius:999px;background:#FBF6EE;color:#1B1815;font:700 11px 'Josefin Sans',sans-serif;letter-spacing:.1em">{{ p.duration }}</span>
+          </sc-if>
         </sc-if>
       </button>
     </sc-for>
@@ -134,17 +131,17 @@
 <!-- ===== TESTIMONIALS ===== -->
 <sc-if value="{{ isTestimonials }}" hint-placeholder-val="{{ false }}">
 <section data-screen-label="Testimonials" style="animation:fadein .35s ease">
-  <div style="padding:clamp(40px,6vw,64px) clamp(20px,4vw,40px) 40px"><h1 style="font:700 clamp(44px,8vw,96px)/0.9 'Josefin Sans',sans-serif;margin:0;text-transform:uppercase;text-wrap:balance">Our audiences <span style="color:#C9573C">say…</span></h1></div>
+  <div style="padding:clamp(40px,6vw,64px) clamp(20px,4vw,40px) 40px"><h1 style="font:700 clamp(44px,8vw,96px)/0.9 'Josefin Sans',sans-serif;margin:0;text-transform:uppercase;text-wrap:balance">{{ testimonials.titleStart }} <span style="color:#C9573C">{{ testimonials.titleAccent }}</span></h1></div>
   <div style="margin:0 clamp(20px,4vw,40px) 14px;border-radius:16px;background:#fff;padding:clamp(28px,4.5vw,56px);display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,320px);gap:32px 48px;align-items:center">
-    <div style="min-width:0"><div style="font:700 clamp(80px,9vw,120px)/0.6 'Josefin Sans',sans-serif;color:#C9573C;height:.5em;margin-bottom:20px">“</div><p style="font:700 clamp(20px,2.4vw,30px)/1.25 'Josefin Sans',sans-serif;margin:0 0 24px;text-wrap:pretty">Watching the focus, coordination, energy and joy of the young dancers was a wonderful, memorable experience. EnLiven dancers have touched my heart and deepened my appreciation of the rich traditions conveyed in dance forms from India.</p><div style="font:700 13px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase">Barbara Pyles</div><div style="font:15px 'Nunito Sans',sans-serif;color:#6B625A;margin-top:4px">Resident · North Hill, Needham</div></div>
-    <img src="photos/img-9929.jpg" alt="A dancer in costume speaking with a resident at North Hill" style="width:100%;height:320px;object-fit:cover;border-radius:16px">
+    <div style="min-width:0"><div style="font:700 clamp(80px,9vw,120px)/0.6 'Josefin Sans',sans-serif;color:#C9573C;height:.5em;margin-bottom:20px">“</div><p style="font:700 clamp(20px,2.4vw,30px)/1.25 'Josefin Sans',sans-serif;margin:0 0 24px;text-wrap:pretty">{{ featuredTestimonialQuote }}</p><div style="font:700 13px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase">{{ testimonials.featured.name }}</div><div style="font:15px 'Nunito Sans',sans-serif;color:#6B625A;margin-top:4px">{{ testimonials.featured.role }}</div></div>
+    <img src="{{ testimonials.featured.photo }}" alt="{{ testimonials.featured.photoAlt }}" style="width:100%;height:320px;object-fit:cover;border-radius:16px">
   </div>
   <div style="padding:0 clamp(20px,4vw,40px) clamp(48px,6vw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px">
-    <div style="border-radius:16px;border:1.5px solid rgba(27,24,21,.15);padding:32px;display:flex;flex-direction:column;gap:14px"><div style="font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#C9573C">Surgeon General</div><p style="font:18px/1.5 'Nunito Sans',sans-serif;margin:0;text-wrap:pretty">“What a remarkable initiative you've built! I love that you are focusing on intergenerational connections… For all the shiny objects and milestones that society has us chase, what really makes a difference in whether or not we find fulfillment are moments we spend loving people and serving others.”</p><div style="margin-top:auto;font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase">Dr. Vivek Murthy · Dec 2024</div></div>
-    <div style="border-radius:16px;border:1.5px solid rgba(27,24,21,.15);padding:32px;display:flex;flex-direction:column;gap:14px"><div style="font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#C9573C">North Hill</div><p style="font:18px/1.5 'Nunito Sans',sans-serif;margin:0;text-wrap:pretty">“We're still talking about your marvelous performance at North Hill. Particularly touching was the inclusion — the age range and talent from beginner to expert. Your love of dance was contagious, as you could tell from the endless applause. We need to schedule an encore visit.”</p><div style="margin-top:auto;font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase">Sandy Bertman · North Hill</div></div>
-    <div style="border-radius:16px;border:1.5px solid rgba(27,24,21,.15);padding:32px;display:flex;flex-direction:column;gap:14px"><div style="font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#C9573C">Waterstone at Wellesley</div><p style="font:18px/1.5 'Nunito Sans',sans-serif;margin:0;text-wrap:pretty">“The program presented was very enjoyable, but I must say the conversation back and forth was magnificent. The students then mingled with the audience, and did not leave in a hurry but stayed for a while. I was so impressed and lifted, as were others.”</p><div style="margin-top:auto;font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase">Arlene Harrison · Waterstone, Wellesley</div></div>
+    <sc-for list="{{ testimonialCards }}" as="c" hint-placeholder-count="3">
+      <div style="border-radius:16px;border:1.5px solid rgba(27,24,21,.15);padding:32px;display:flex;flex-direction:column;gap:14px"><div style="font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#C9573C">{{ c.label }}</div><p style="font:18px/1.5 'Nunito Sans',sans-serif;margin:0;text-wrap:pretty">“{{ c.quote }}”</p><div style="margin-top:auto;font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase">{{ c.attribution }}</div></div>
+    </sc-for>
   </div>
-  <div style="margin:0 clamp(20px,4vw,40px);padding:clamp(40px,5vw,64px) 0;border-top:1px solid rgba(27,24,21,.15);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px 32px"><h2 style="font:700 clamp(32px,4vw,48px)/0.95 'Josefin Sans',sans-serif;margin:0;text-transform:uppercase;max-width:560px;text-wrap:balance">Want this at your community?</h2><a href="{{ signupUrl }}" target="_blank" rel="noopener" style="padding:20px 36px 17px;border-radius:999px;background:#EF7F63;color:#1B1815;font:700 15px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase" style-hover="background:#E86E50;color:#1B1815">Sign up</a></div>
+  <div style="margin:0 clamp(20px,4vw,40px);padding:clamp(40px,5vw,64px) 0;border-top:1px solid rgba(27,24,21,.15);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px 32px"><h2 style="font:700 clamp(32px,4vw,48px)/0.95 'Josefin Sans',sans-serif;margin:0;text-transform:uppercase;max-width:560px;text-wrap:balance">{{ testimonials.ctaTitle }}</h2><a href="{{ signupUrl }}" target="_blank" rel="noopener" style="padding:20px 36px 17px;border-radius:999px;background:#EF7F63;color:#1B1815;font:700 15px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase" style-hover="background:#E86E50;color:#1B1815">Sign up</a></div>
 </section>
 </sc-if>
 
@@ -152,10 +149,10 @@
 
 <footer style="background:#fff;padding:clamp(40px,5vw,64px) clamp(20px,4vw,40px) 40px;border-top:1px solid rgba(27,24,21,.12)">
   <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px 48px;align-items:flex-start;margin-bottom:40px">
-    <div style="min-width:0"><div style="font:700 13px 'Josefin Sans',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C9573C;margin-bottom:16px">Get in touch</div><a href="mailto:info@enlivenup.org" style="display:block;font:700 clamp(24px,3.6vw,44px)/1.1 'Josefin Sans',sans-serif;overflow-wrap:anywhere">info@enlivenup.org</a><a href="tel:+16175016586" style="display:block;font:700 clamp(24px,3.6vw,44px)/1.1 'Josefin Sans',sans-serif;margin-top:6px">617-501-6586</a><div style="font:17px 'Nunito Sans',sans-serif;color:#6B625A;margin-top:16px">Newton, MA · Serving Greater Boston</div></div>
+    <div style="min-width:0"><div style="font:700 13px 'Josefin Sans',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C9573C;margin-bottom:16px">Get in touch</div><a href="{{ emailHref }}" style="display:block;font:700 clamp(24px,3.6vw,44px)/1.1 'Josefin Sans',sans-serif;overflow-wrap:anywhere">{{ site.email }}</a><a href="{{ phoneHref }}" style="display:block;font:700 clamp(24px,3.6vw,44px)/1.1 'Josefin Sans',sans-serif;margin-top:6px">{{ site.phone }}</a><div style="font:17px 'Nunito Sans',sans-serif;color:#6B625A;margin-top:16px">{{ site.location }}</div></div>
     <a href="{{ signupUrl }}" target="_blank" rel="noopener" style="padding:20px 36px 17px;border-radius:999px;background:#EF7F63;color:#1B1815;font:700 15px 'Josefin Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase" style-hover="background:#E86E50;color:#1B1815">Sign up</a>
   </div>
-  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 24px;padding-top:24px;border-top:1px solid rgba(27,24,21,.12)"><a href="#home"><img src="assets/enliven-logo.avif" alt="Enliven" style="height:72px"></a><div style="display:flex;flex-wrap:wrap;gap:8px 24px;font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#6B625A"><a href="#about">About</a><a href="#gallery">Gallery</a><a href="#testimonials">Testimonials</a></div><div style="font:14px 'Nunito Sans',sans-serif;color:#6B625A">© 2026 Enliven. A student-led nonprofit.</div></div>
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 24px;padding-top:24px;border-top:1px solid rgba(27,24,21,.12)"><a href="#home"><img src="assets/enliven-logo.avif" alt="Enliven" style="height:72px"></a><div style="display:flex;flex-wrap:wrap;gap:8px 24px;font:700 12px 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#6B625A"><a href="#about">About</a><a href="#gallery">Gallery</a><a href="#testimonials">Testimonials</a></div><div style="font:14px 'Nunito Sans',sans-serif;color:#6B625A">{{ site.footerNote }}</div></div>
 </footer>
 
 <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
@@ -169,110 +166,111 @@
   <button onClick="{{ closeLightbox }}" aria-label="Close" style="position:absolute;top:16px;right:16px;width:48px;height:48px;border-radius:50%;border:0;background:#FBF6EE;color:#1B1815;font:700 20px 'Josefin Sans',sans-serif;display:grid;place-items:center">×</button>
 </div>
 </sc-if>
+</sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;signupUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://docs.google.com/forms/d/e/1FAIpQLSdikDx5stmNVNagWz6T6fUQpKguJLZSqWEKAFPnWCd1ab4POQ/viewform&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Links&quot;},&quot;sunIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.4,&quot;min&quot;:0,&quot;max&quot;:1,&quot;step&quot;:0.05,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
-const PHOTOS = [
-  ['img-0419','dance','Student dancers performing on stage for residents'],
-  ['img-9916','music','Student singer with piano accompaniment'],
-  ['img-3663','together','A student greeting a resident after a performance'],
-  ['img-9911','together','Students and residents gathered after a performance'],
-  ['img-0422','dance','Solo classical dancer on stage'],
-  ['img-3327','music','Student playing guitar for residents'],
-  ['img-9929','together','A dancer in costume talking with a resident'],
-  ['img-9913','music','Student choir performing for residents'],
-  ['img-9909','together','A student and resident in conversation'],
-  ['img-9923','dance','Classical dancers performing in the lounge'],
-  ['img-3328','music','Residents listening to a guitar performance'],
-  ['img-9939','together','Dancer with a young guest at the art table'],
-  ['img-9919','music','Student at the grand piano'],
-  ['img-3344','together','Students and residents posing after the show'],
-  ['img-9924','dance','Dancers and residents together after the performance'],
-  ['img-9914','music','Piano performance for residents'],
-  ['img-3339','together','Students chatting with a resident'],
-  ['img-9922','together','Residents enjoying a performance'],
-  ['img-9920','music','Student ensemble taking a bow'],
-  ['img-9940','together','Residents at the art table'],
-  ['img-3331','music','Residents gathered for a guitar concert'],
-  ['img-4334','together','Student volunteers after the show'],
-  ['img-0847','together','Student volunteers at Sunrise of Newton'],
-  ['img-9907','together','Student and resident in conversation'],
-  ['img-3336','music','Students introducing their set'],
-  ['img-9936','music','Student performers lined up before the show'],
-  ['img-9930','together','Painting nails together at the art table'],
-  ['screenshot-2026-10-13-at-6-39-35-pm','dance','Dancers and musicians before a performance'],
-];
-// [id, seconds, alt]
-const VIDEOS = [
-  ['clip-05', 7, 'Classical dancers performing in the lounge'],
-  ['clip-02', 13, 'Student singing and playing electric guitar'],
-  ['clip-10', 5, 'Student at the grand piano'],
-  ['clip-04', 43, 'Vocal duet for residents'],
-  ['clip-07', 23, 'Students and residents singing together'],
-  ['clip-13', 10, 'Student performing for residents'],
-  ['clip-01', 8, 'A resident shares her thoughts after the show'],
-  ['clip-06', 23, 'Student ensemble introducing their set'],
-  ['clip-11', 8, 'Residents arriving for the performance'],
-  ['clip-03', 19, 'Students greeting residents before the show'],
-  ['clip-14', 11, 'Students taking a bow'],
-  ['clip-08', 3, 'Mingling after the performance'],
-  ['clip-12', 3, 'Residents gathering in the lounge'],
-];
-const TAG = { music: 'Music', dance: 'Dance', together: 'Together' };
+<script type="text/x-dc" data-dc-script>
+// All copy, photos and videos live in content/*.json (edited through the CMS at /admin).
+// This script only loads those files and shapes them for the template above.
 const PAGES = ['home', 'about', 'gallery', 'testimonials'];
+const CONTENT_FILES = ['site', 'home', 'about', 'gallery', 'testimonials'];
+const SHY = '­';
+// Soft-hyphenate "intergenerational" so it can wrap as "inter-/generational" on narrow phones,
+// even if an editor retypes the word without the invisible soft hyphen.
+const shy = (s) => String(s ?? '').includes(SHY) ? String(s) : String(s ?? '').replace(/(inter)(generational)/gi, `$1${SHY}$2`);
+const paragraphs = (s) => String(s ?? '').split(/\n\s*\n/).map((t) => t.trim()).filter(Boolean);
+const stripQuotes = (s) => String(s ?? '').trim().replace(/^[“"]+/, '').replace(/[”"]+$/, '');
+const fmtDuration = (secs) => `${Math.floor(secs / 60)}:${String(Math.round(secs) % 60).padStart(2, '0')}`;
+const telHref = (phone) => { const d = String(phone ?? '').replace(/\D/g, ''); return d ? `tel:${d.length === 10 ? '+1' : '+'}${d}` : ''; };
 
 class Component extends DCLogic {
-  state = { page: 'home', filter: 'all', lightbox: null };
+  state = { page: 'home', lightbox: null, content: null, loadError: false, durations: {} };
   componentDidMount() {
     this.onHash = () => {
       const h = (location.hash || '#home').slice(1).toLowerCase();
       const page = h === 'team' ? 'about' : (PAGES.includes(h) ? h : 'home');
-      const scrollTeam = () => { const el = document.getElementById('team-aria'); if (el) { const y = el.getBoundingClientRect().top + window.scrollY - 180; window.scrollTo(0, Math.max(0, y)); } };
-      if (page !== this.state.page) { this.setState({ page, lightbox: null }, () => h === 'team' ? setTimeout(scrollTeam, 60) : window.scrollTo(0, 0)); }
-      else if (h === 'team') scrollTeam();
+      if (page !== this.state.page) { this.setState({ page, lightbox: null }, () => h === 'team' ? setTimeout(this.scrollTeam, 60) : window.scrollTo(0, 0)); }
+      else if (h === 'team') this.scrollTeam();
     };
+    this.scrollTeam = () => { const el = document.querySelector('#team img') || document.getElementById('team'); if (el) { const y = el.getBoundingClientRect().top + window.scrollY - 180; window.scrollTo(0, Math.max(0, y)); } };
     this.onKey = (e) => { if (e.key === 'Escape') this.setState({ lightbox: null }); };
     window.addEventListener('hashchange', this.onHash);
     window.addEventListener('keydown', this.onKey);
     this.onHash();
+    Promise.all(CONTENT_FILES.map((f) => fetch(`content/${f}.json`, { cache: 'no-cache' }).then((r) => { if (!r.ok) throw new Error(`content/${f}.json → HTTP ${r.status}`); return r.json(); })))
+      .then((parts) => {
+        const content = Object.fromEntries(CONTENT_FILES.map((f, i) => [f, parts[i]]));
+        this.setState({ content }, () => { if (location.hash.toLowerCase() === '#team') setTimeout(this.scrollTeam, 60); });
+        this.measureVideos(content.gallery?.videos || []);
+      })
+      .catch((err) => { console.error('[enliven] could not load site content:', err); this.setState({ loadError: true }); });
   }
   componentWillUnmount() {
     window.removeEventListener('hashchange', this.onHash);
     window.removeEventListener('keydown', this.onKey);
   }
+  // Editors upload clips without typing a duration; read it from the file's metadata instead.
+  measureVideos(videos) {
+    videos.filter((v) => v && v.src && !(v.durationSeconds > 0)).forEach((v) => {
+      const el = document.createElement('video');
+      el.preload = 'metadata';
+      el.onloadedmetadata = () => { if (isFinite(el.duration)) this.setState((s) => ({ durations: { ...s.durations, [v.src]: el.duration } })); el.src = ''; };
+      el.src = v.src;
+    });
+  }
   renderVals() {
-    const { page, filter, lightbox } = this.state;
-    const signupUrl = this.props.signupUrl ?? 'https://forms.gle/';
-    const sunOpacity = this.props.sunIntensity ?? 0.55;
+    const { page, lightbox, content, loadError, durations } = this.state;
     const nav = (p) => (page === p ? '#C9573C' : '#1B1815');
-    const chip = (active) => active
-      ? 'padding:12px 18px 9px;border-radius:999px;border:1.5px solid #1B1815;background:#1B1815;color:#FBF6EE;font:700 13px "Josefin Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase'
-      : 'padding:12px 18px 9px;border-radius:999px;border:1.5px solid rgba(27,24,21,.3);background:transparent;color:#1B1815;font:700 13px "Josefin Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase';
-    const toStyle = (s) => Object.fromEntries(s.split(';').map(d => { const i = d.indexOf(':'); return [d.slice(0, i).trim().replace(/-([a-z])/g, (_, c) => c.toUpperCase()), d.slice(i + 1).trim()]; }));
-    const filters = [['all', 'All'], ['music', 'Music'], ['dance', 'Dance'], ['together', 'Together']].map(([k, label]) => ({
-      label, style: toStyle(chip(filter === k)), select: () => this.setState({ filter: k }),
-    }));
-    const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
-    const stills = PHOTOS.filter(([, t]) => filter === 'all' || t === filter).map(([id, t, alt]) => ({
-      poster: `photos/${id}.jpg`, alt, tag: TAG[t], isVideo: false, label: 'Open photo',
-      open: () => this.setState({ lightbox: { src: `photos/${id}.jpg`, alt, video: false } }),
-    }));
-    const clips = VIDEOS.map(([id, secs, alt]) => ({
-      poster: `videos/${id}.jpg`, alt, isVideo: true, duration: fmt(secs), label: 'Play video',
-      open: () => this.setState({ lightbox: { src: `videos/${id}.mp4`, poster: `videos/${id}.jpg`, alt, video: true } }),
-    }));
-    // interleave: a video after every two photos
-    const photos = [];
-    for (let i = 0, v = 0; i < stills.length; i++) { photos.push(stills[i]); if (i % 2 === 1 && v < clips.length) photos.push(clips[v++]); }
-    while (photos.length && clips.length > Math.floor(stills.length / 2)) { const rest = clips.slice(Math.floor(stills.length / 2)); photos.push(...rest); break; }
-    return {
+    const base = {
+      loaded: !!content, loadError,
       isHome: page === 'home', isAbout: page === 'about', isGallery: page === 'gallery', isTestimonials: page === 'testimonials',
       navHome: nav('home'), navAbout: nav('about'), navGallery: nav('gallery'), navTestimonials: nav('testimonials'),
-      signupUrl, sunOpacity, filters, photos, galleryCount: PHOTOS.length + VIDEOS.length,
       lightboxOpen: !!lightbox, lightboxSrc: lightbox?.src ?? '', lightboxAlt: lightbox?.alt ?? '', lightboxPoster: lightbox?.poster ?? '',
       lightboxIsVideo: !!lightbox?.video, lightboxIsImage: !!lightbox && !lightbox.video,
       closeLightbox: () => this.setState({ lightbox: null }),
       stop: (e) => e.stopPropagation(),
+    };
+    if (!content) return base;
+    const { site = {}, home = {}, about = {}, gallery = {}, testimonials = {} } = content;
+
+    const heroPhotos = (home.heroPhotos || []).map((p, i) => ({
+      ...p, style: `width:100%;height:${i === 1 ? 360 : 280}px;object-fit:cover;${p.position ? `object-position:${p.position};` : ''}border-radius:16px`,
+    }));
+    const stats = (home.stats || []).map((s) => { const value = String(s.value ?? '').trim(); const suffix = value.endsWith('+') ? '+' : ''; return { number: suffix ? value.slice(0, -1) : value, suffix, label: s.label }; });
+    const missionList = paragraphs(home.missionBody);
+    const missionParas = missionList.map((text, i) => ({ text, style: `font:18px/1.6 'Nunito Sans',sans-serif;color:#6B625A;margin:0 0 ${i === missionList.length - 1 ? 28 : 20}px;text-wrap:pretty` }));
+    const aboutParas = paragraphs(about.body).map((text, i) => ({ text, sep: i > 0 }));
+    const team = (about.team || []).map((t) => ({ ...t, photoStyle: `width:160px;height:160px;object-fit:cover;${t.photoPosition ? `object-position:${t.photoPosition};` : ''}border-radius:16px` }));
+
+    const stills = (gallery.photos || []).filter((p) => p && p.src).map((p) => ({
+      poster: p.src, hasPoster: true, noPoster: false, alt: p.alt || '', isVideo: false, label: 'Open photo',
+      open: () => this.setState({ lightbox: { src: p.src, alt: p.alt || '', video: false } }),
+    }));
+    const clips = (gallery.videos || []).filter((v) => v && v.src).map((v) => {
+      const secs = v.durationSeconds > 0 ? v.durationSeconds : durations[v.src];
+      return {
+        poster: v.poster || '', hasPoster: !!v.poster, noPoster: !v.poster, previewSrc: `${v.src}#t=0.1`, alt: v.alt || '', isVideo: true,
+        duration: secs > 0 ? fmtDuration(secs) : '', label: 'Play video',
+        open: () => this.setState({ lightbox: { src: v.src, poster: v.poster || '', alt: v.alt || '', video: true } }),
+      };
+    });
+    // interleave: a video after every two photos; any videos left over go at the end
+    const photos = [];
+    let v = 0;
+    for (let i = 0; i < stills.length; i++) { photos.push(stills[i]); if (i % 2 === 1 && v < clips.length) photos.push(clips[v++]); }
+    photos.push(...clips.slice(v));
+
+    const testimonialCards = (testimonials.cards || []).map((c) => ({ ...c, quote: stripQuotes(c.quote) }));
+
+    return {
+      ...base, site, home, about, gallery, testimonials,
+      signupUrl: site.signupUrl || '#', sunOpacity: site.sunIntensity ?? 0.4,
+      emailHref: `mailto:${site.email || ''}`, phoneHref: site.phoneHref || telHref(site.phone),
+      heroLine1: shy(home.heroTitle?.line1), heroLine2: shy(home.heroTitle?.line2), heroLine3: shy(home.heroTitle?.line3),
+      heroPhotos, stats, missionParas,
+      aboutTitleStart: shy(about.titleStart), aboutParas, team,
+      photos,
+      featuredTestimonialQuote: stripQuotes(testimonials.featured?.quote), testimonialCards,
     };
   }
 }

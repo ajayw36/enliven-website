@@ -1,0 +1,197 @@
+{
+  "title": "Gallery",
+  "photos": [
+    {
+      "src": "/photos/img-0419.jpg",
+      "alt": "Student dancers performing on stage for residents"
+    },
+    {
+      "src": "/photos/img-9916.jpg",
+      "alt": "Student singer with piano accompaniment"
+    },
+    {
+      "src": "/photos/img-3663.jpg",
+      "alt": "A student greeting a resident after a performance"
+    },
+    {
+      "src": "/photos/img-9911.jpg",
+      "alt": "Students and residents gathered after a performance"
+    },
+    {
+      "src": "/photos/img-0422.jpg",
+      "alt": "Solo classical dancer on stage"
+    },
+    {
+      "src": "/photos/img-3327.jpg",
+      "alt": "Student playing guitar for residents"
+    },
+    {
+      "src": "/photos/img-9929.jpg",
+      "alt": "A dancer in costume talking with a resident"
+    },
+    {
+      "src": "/photos/img-9913.jpg",
+      "alt": "Student choir performing for residents"
+    },
+    {
+      "src": "/photos/img-9909.jpg",
+      "alt": "A student and resident in conversation"
+    },
+    {
+      "src": "/photos/img-9923.jpg",
+      "alt": "Classical dancers performing in the lounge"
+    },
+    {
+      "src": "/photos/img-3328.jpg",
+      "alt": "Residents listening to a guitar performance"
+    },
+    {
+      "src": "/photos/img-9939.jpg",
+      "alt": "Dancer with a young guest at the art table"
+    },
+    {
+      "src": "/photos/img-9919.jpg",
+      "alt": "Student at the grand piano"
+    },
+    {
+      "src": "/photos/img-3344.jpg",
+      "alt": "Students and residents posing after the show"
+    },
+    {
+      "src": "/photos/img-9924.jpg",
+      "alt": "Dancers and residents together after the performance"
+    },
+    {
+      "src": "/photos/img-9914.jpg",
+      "alt": "Piano performance for residents"
+    },
+    {
+      "src": "/photos/img-3339.jpg",
+      "alt": "Students chatting with a resident"
+    },
+    {
+      "src": "/photos/img-9922.jpg",
+      "alt": "Residents enjoying a performance"
+    },
+    {
+      "src": "/photos/img-9920.jpg",
+      "alt": "Student ensemble taking a bow"
+    },
+    {
+      "src": "/photos/img-9940.jpg",
+      "alt": "Residents at the art table"
+    },
+    {
+      "src": "/photos/img-3331.jpg",
+      "alt": "Residents gathered for a guitar concert"
+    },
+    {
+      "src": "/photos/img-4334.jpg",
+      "alt": "Student volunteers after the show"
+    },
+    {
+      "src": "/photos/img-0847.jpg",
+      "alt": "Student volunteers at Sunrise of Newton"
+    },
+    {
+      "src": "/photos/img-9907.jpg",
+      "alt": "Student and resident in conversation"
+    },
+    {
+      "src": "/photos/img-3336.jpg",
+      "alt": "Students introducing their set"
+    },
+    {
+      "src": "/photos/img-9936.jpg",
+      "alt": "Student performers lined up before the show"
+    },
+    {
+      "src": "/photos/img-9930.jpg",
+      "alt": "Painting nails together at the art table"
+    },
+    {
+      "src": "/photos/screenshot-2026-10-13-at-6-39-35-pm.jpg",
+      "alt": "Dancers and musicians before a performance"
+    }
+  ],
+  "videos": [
+    {
+      "src": "/videos/clip-05.mp4",
+      "poster": "/videos/clip-05.jpg",
+      "durationSeconds": 7,
+      "alt": "Classical dancers performing in the lounge"
+    },
+    {
+      "src": "/videos/clip-02.mp4",
+      "poster": "/videos/clip-02.jpg",
+      "durationSeconds": 13,
+      "alt": "Student singing and playing electric guitar"
+    },
+    {
+      "src": "/videos/clip-10.mp4",
+      "poster": "/videos/clip-10.jpg",
+      "durationSeconds": 5,
+      "alt": "Student at the grand piano"
+    },
+    {
+      "src": "/videos/clip-04.mp4",
+      "poster": "/videos/clip-04.jpg",
+      "durationSeconds": 43,
+      "alt": "Vocal duet for residents"
+    },
+    {
+      "src": "/videos/clip-07.mp4",
+      "poster": "/videos/clip-07.jpg",
+      "durationSeconds": 23,
+      "alt": "Students and residents singing together"
+    },
+    {
+      "src": "/videos/clip-13.mp4",
+      "poster": "/videos/clip-13.jpg",
+      "durationSeconds": 10,
+      "alt": "Student performing for residents"
+    },
+    {
+      "src": "/videos/clip-01.mp4",
+      "poster": "/videos/clip-01.jpg",
+      "durationSeconds": 8,
+      "alt": "A resident shares her thoughts after the show"
+    },
+    {
+      "src": "/videos/clip-06.mp4",
+      "poster": "/videos/clip-06.jpg",
+      "durationSeconds": 23,
+      "alt": "Student ensemble introducing their set"
+    },
+    {
+      "src": "/videos/clip-11.mp4",
+      "poster": "/videos/clip-11.jpg",
+      "durationSeconds": 8,
+      "alt": "Residents arriving for the performance"
+    },
+    {
+      "src": "/videos/clip-03.mp4",
+      "poster": "/videos/clip-03.jpg",
+      "durationSeconds": 19,
+      "alt": "Students greeting residents before the show"
+    },
+    {
+      "src": "/videos/clip-14.mp4",
+      "poster": "/videos/clip-14.jpg",
+      "durationSeconds": 11,
+      "alt": "Students taking a bow"
+    },
+    {
+      "src": "/videos/clip-08.mp4",
+      "poster": "/videos/clip-08.jpg",
+      "durationSeconds": 3,
+      "alt": "Mingling after the performance"
+    },
+    {
+      "src": "/videos/clip-12.mp4",
+      "poster": "/videos/clip-12.jpg",
+      "durationSeconds": 3,
+      "alt": "Residents gathering in the lounge"
+    }
+  ]
+}

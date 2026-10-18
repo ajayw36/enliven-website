@@ -1,0 +1,29 @@
+{
+  "titleStart": "Our audiences",
+  "titleAccent": "say…",
+  "featured": {
+    "quote": "Watching the focus, coordination, energy and joy of the young dancers was a wonderful, memorable experience. EnLiven dancers have touched my heart and deepened my appreciation of the rich traditions conveyed in dance forms from India.",
+    "name": "Barbara Pyles",
+    "role": "Resident · North Hill, Needham",
+    "photo": "/photos/img-9929.jpg",
+    "photoAlt": "A dancer in costume speaking with a resident at North Hill"
+  },
+  "cards": [
+    {
+      "label": "Surgeon General",
+      "quote": "What a remarkable initiative you've built! I love that you are focusing on intergenerational connections… For all the shiny objects and milestones that society has us chase, what really makes a difference in whether or not we find fulfillment are moments we spend loving people and serving others.",
+      "attribution": "Dr. Vivek Murthy · Dec 2024"
+    },
+    {
+      "label": "North Hill",
+      "quote": "We're still talking about your marvelous performance at North Hill. Particularly touching was the inclusion — the age range and talent from beginner to expert. Your love of dance was contagious, as you could tell from the endless applause. We need to schedule an encore visit.",
+      "attribution": "Sandy Bertman · North Hill"
+    },
+    {
+      "label": "Waterstone at Wellesley",
+      "quote": "The program presented was very enjoyable, but I must say the conversation back and forth was magnificent. The students then mingled with the audience, and did not leave in a hurry but stayed for a while. I was so impressed and lifted, as were others.",
+      "attribution": "Arlene Harrison · Waterstone, Wellesley"
+    }
+  ],
+  "ctaTitle": "Want this at your community?"
+}
