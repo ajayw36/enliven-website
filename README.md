@@ -15,7 +15,7 @@ Static site for [enlivenup.org](https://enlivenup.org) — no build step. Hosted
    - **Home page** — headline, intro, photos, numbers, mission text, featured quote, recent moments, partners.
    - **About page** — heading, about text, large photo, founding year, **team members**.
    - **Gallery** — photos and videos.
-   - **Testimonials page** — featured testimonial, testimonial cards, bottom heading.
+   - **Testimonials page** — featured testimonial, testimonial cards.
 3. Change what you need. Every field has a short grey hint under it.
 4. Press **Publish → Publish now** (top right). The site updates within a minute or two. Refresh enlivenup.org to see it.
 

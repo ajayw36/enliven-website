@@ -184,4 +184,3 @@ collections:
               - { label: "Label (coral, above the quote)", name: label, widget: string, hint: "e.g. North Hill" }
               - { label: "Quote", name: quote, widget: text }
               - { label: "Attribution", name: attribution, widget: string, hint: "e.g. Sandy Bertman · North Hill" }
-          - { label: "Bottom call-to-action heading", name: ctaTitle, widget: string }
