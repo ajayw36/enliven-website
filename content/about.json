@@ -1,13 +1,13 @@
 {
-  "titleStart": "Inter­generational connection makes a",
   "titleAccent": "vibrant",
-  "titleEnd": "community.",
   "body": "At Enliven, we are dedicated to help bridge the gap between elders and youth through meaningful exchange. We create concerts and performances small and large to engage seniors of all abilities.\n\nYouth share their musical talents and cultural perspectives to entertain and uplift their audiences. Elders share their love, wisdom and support to the students. This exchange offers an enriching experience for both the elders and the youth, helping create special bonds and memories for all.",
+  "estYear": "2023",
+  "titleEnd": "community.",
+  "titleStart": "Inter­generational connection makes a",
   "heroPhoto": {
     "src": "/photos/img-9911.jpg",
     "alt": "Students and residents gathered together after a performance"
   },
-  "estYear": "2023",
   "estNote": "Founded by students in Newton, MA. Now across Greater Boston.",
   "teamTitle": "Our team",
   "team": [
@@ -17,6 +17,12 @@
       "bio": "I am passionate about women’s empowerment and bringing people together. I’ve always enjoyed singing and dancing, and music has been a big part of my life. I’ve loved leading Enliven and fostering meaningful connections across generations through performance and dialogue.",
       "photo": "/photos/team-aria.png",
       "photoPosition": "50% 20%"
+    },
+    {
+      "name": "Reyva Choudhry",
+      "school": "Winsor School - Class of '29",
+      "bio": "Reyva is a sophomore at the Winsor School in Boston with a passion for STEM and making a positive impact in her community. Outside of academics, she is a varsity swimmer for her school, a Bollywood dancer and a Model UN delegate.",
+      "photo": "/photos/untitled-design.png"
     }
   ]
 }
