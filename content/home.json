@@ -1,39 +1,72 @@
 {
-  "heroTitle": {
-    "line1": "Inspiring",
-    "line2": "inter­generational",
-    "line3": "connections"
-  },
-  "heroSubtitle": "Student musicians, dancers and artists bring live performances to senior communities across Greater Boston and leave with friendships, stories and wisdom in return.",
-  "heroNote": "Students and senior communities welcome",
-  "heroPhotos": [
-    { "src": "/photos/img-0419.jpg", "alt": "Student dancers performing for residents", "position": "" },
-    { "src": "/photos/img-3663.jpg", "alt": "A student greeting a resident after a performance", "position": "50% 30%" },
-    { "src": "/photos/img-9916.jpg", "alt": "Student singer with piano accompaniment", "position": "" }
-  ],
-  "stats": [
-    { "value": "1,000+", "label": "Seniors reached" },
-    { "value": "50+", "label": "Students engaged" },
-    { "value": "30+", "label": "Events organized" }
-  ],
-  "missionTitle": "Youth and elders, together in one room",
-  "missionBody": "We believe that intergenerational connections are key to creating a vibrant and connected community. Our programs and initiatives are designed to bring youth and elders together, fostering relationships that bring joy and meaning to all involved.\n\nWhether you're a student who wants to perform or a community that wants to host, we would love to hear from you!",
-  "featuredQuote": {
-    "text": "Thank you for everything you're doing to build in-person community and to bring joy into people's lives. It was so clear how much people enjoy the experience you have created.",
-    "attribution": "Dr. Vivek Murthy — U.S. Surgeon General, Dec 2024"
-  },
   "recentMomentsTitle": "Recent moments",
-  "recentMoments": [
-    { "src": "/photos/img-9909.jpg", "alt": "A student and resident in conversation" },
-    { "src": "/photos/img-9939.jpg", "alt": "Dancer with a young guest at the art table" },
-    { "src": "/photos/img-3344.jpg", "alt": "Students and residents gathered after the show" },
-    { "src": "/photos/img-9922.jpg", "alt": "Residents enjoying a performance" }
-  ],
   "partnersLabel": "Partners",
   "partners": [
     "Sunrise of Newton",
     "Fox Hill Village",
     "North Hill",
     "Waterstone at Wellesley"
+  ],
+  "missionTitle": "Youth and elders, together in one room",
+  "heroNote": "Students and senior communities welcome",
+  "missionBody": "We believe that intergenerational connections are key to creating a vibrant and connected community. Our programs and initiatives are designed to bring youth and elders together, fostering relationships that bring joy and meaning to all involved.\n\nWhether you're a student who wants to perform or a community that wants to host, we would love to hear from you!",
+  "featuredQuote": {
+    "text": "Thank you for everything you're doing to build in-person community and to bring joy into people's lives. It was so clear how much people enjoy the experience you have created.",
+    "attribution": "Dr. Vivek Murthy — U.S. Surgeon General, Dec 2024"
+  },
+  "heroSubtitle": "Student musicians, dancers and artists bring live performances to senior communities across Greater Boston and leave with friendships, stories and wisdom in return.",
+  "recentMoments": [
+    {
+      "src": "/photos/img-9909.jpg",
+      "alt": "A student and resident in conversation"
+    },
+    {
+      "src": "/photos/img-9939.jpg",
+      "alt": "Dancer with a young guest at the art table"
+    },
+    {
+      "src": "/photos/img-3344.jpg",
+      "alt": "Students and residents gathered after the show"
+    },
+    {
+      "src": "/photos/img-9922.jpg",
+      "alt": "Residents enjoying a performance"
+    }
+  ],
+  "heroPhotos": [
+    {
+      "src": "/photos/img-0419.jpg",
+      "alt": "Student dancers performing for residents",
+      "position": ""
+    },
+    {
+      "src": "/photos/img-3663.jpg",
+      "alt": "A student greeting a resident after a performance",
+      "position": "50% 30%"
+    },
+    {
+      "src": "/photos/img-9916.jpg",
+      "alt": "Student singer with piano accompaniment",
+      "position": ""
+    }
+  ],
+  "heroTitle": {
+    "line1": "Inspiring",
+    "line2": "inter­generational",
+    "line3": "connections"
+  },
+  "stats": [
+    {
+      "value": "1,000+",
+      "label": "Seniors reached"
+    },
+    {
+      "value": "80+",
+      "label": "Students engaged"
+    },
+    {
+      "value": "30+",
+      "label": "Events organized"
+    }
   ]
 }
