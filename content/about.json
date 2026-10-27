@@ -13,16 +13,40 @@
   "team": [
     {
       "name": "Aria Malhotra",
-      "school": "Milton Academy · Class of ’27",
-      "bio": "I am passionate about women’s empowerment and bringing people together. I’ve always enjoyed singing and dancing, and music has been a big part of my life. I’ve loved leading Enliven and fostering meaningful connections across generations through performance and dialogue.",
+      "school": "Milton Academy · Class of 2027",
+      "bio": "Aria is passionate about women’s empowerment and bringing people together. She has always enjoyed singing and dancing, with music being a big part of her life. She helped create Enliven as a platform to foster meaningful connections across generations through performance and dialogue.",
       "photo": "/photos/team-aria.png",
       "photoPosition": "50% 20%"
     },
     {
       "name": "Reyva Choudhry",
-      "school": "Winsor School - Class of '29",
-      "bio": "Reyva is a sophomore at the Winsor School in Boston with a passion for STEM and making a positive impact in her community. Outside of academics, she is a varsity swimmer for her school, a Bollywood dancer and a Model UN delegate.",
+      "school": "Winsor School - Class of 2029",
+      "bio": "Reyva is passionate about STEM and making a positive impact in her community. Outside of academics, she is a varsity swimmer for her school, a Bollywood dancer, and a Model UN delegate.",
       "photo": "/photos/untitled-design.png"
+    },
+    {
+      "name": "Saanvi Sharma",
+      "school": "Nobles and Greenough School - Class of 2029",
+      "bio": "Saanvi has been part of the Enliven volunteer team since 6th grade. She enjoys musical theater and singing. She enjoys interacting with people of all backgrounds and giving back to the community in creative ways.",
+      "photo": "/photos/renderedimage.jpeg"
+    },
+    {
+      "name": "Teya Mahanama ",
+      "school": "Nobles and Greenough School - Class of 2029",
+      "bio": "Teya Mahanama enjoys playing the guitar, ballet and being part of the Crew team at her school. ",
+      "photo": "/photos/img_8622.png"
+    },
+    {
+      "name": "Aneesha Khanna",
+      "school": "Nobles and Greenough - Class of 2029",
+      "bio": "Aneesha enjoys reading, baking and listening to music. At school, she does debate, mock trial, and sings with her school chorus. She enjoys public speaking and anything to do with music!",
+      "photo": "/photos/img_3236.png"
+    },
+    {
+      "name": "Kiyaan Padmanabhan",
+      "school": "Wellesley High School - Class of 2028",
+      "bio": "bio",
+      "photo": "/photos/img-3663.jpg"
     }
   ]
 }
