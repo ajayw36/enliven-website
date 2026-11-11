@@ -47,6 +47,30 @@
       "school": "Wellesley High School - Class of 2028",
       "bio": "bio",
       "photo": "/photos/img-3663.jpg"
+    },
+    {
+      "name": "Reeya Wadhwani - Co Founder & Advisor",
+      "school": "Boston Univ Academy - Class of '26 / University of Toronto - Class of '30",
+      "bio": "Reeya is currently a student of Psychology and Business at the University of Toronto. She co-founded Enliven with the vision of bringing generations together by encouraging young people to share their talents, energy, and enthusiasm with older adults, helping foster meaningful connections and reduce feelings of isolation and loneliness.\n\nPassionate about dance, Reeya loves how music and movement can transcend cultural and generational boundaries, spark conversations, and bring people from diverse backgrounds together. She finds joy in seeing how a shared appreciation for dance can create lasting connections and a sense of community.\n\n​",
+      "photo": "/photos/reeya-head-pic.png"
+    },
+    {
+      "name": "Jaya Delong - Co Founder,  Alumni Board",
+      "school": "Newton North High School - Class of '25 / Harvard University - Class of '29",
+      "bio": "Jaya is pursuing a pre-med track at Harvard University and has a special interest in working with older adults. Having grown up playing the cello, she developed a deep love for classical music and its ability to bring people together. She is passionate about Enliven because it allows her to share the joy of music while fostering meaningful connections across generations and backgrounds.",
+      "photo": "/photos/jaya-headshot.png"
+    },
+    {
+      "photo": "/photos/779adfa8-f71c-4dde-a09c-645d921598b6.jpeg",
+      "name": "Ajay Wadhwani - Co Founder, Alumni Board",
+      "school": "Boston Univ Academy - Class of '25 / University of Michigan - Class of '29",
+      "bio": "Ajay is currently studying Computer Science and Mathematics at the University of Michigan. He enjoys playing the piano and spending time with friends and family. He is passionate about the power of music to inspire others, evoke cherished memories and emotions, and spark meaningful conversations and connections across generations."
+    },
+    {
+      "name": "Aanika Seth Mohta - Co Founder, Alumni Board",
+      "school": "BB&N School - Class of '25 / University of Chicago - CLASS OF '29",
+      "bio": "Aanika is currently studying Economics at the University of Chicago. Having grown up learning Indian classical dance, she is passionate about sharing her cultural heritage with people of all backgrounds. Her close relationship with her grandparents has given her a deep appreciation for the value of intergenerational connections, inspiring her to foster meaningful relationships and a sense of community across generations.",
+      "photo": "/photos/aanika-headshot.png"
     }
   ]
 }
