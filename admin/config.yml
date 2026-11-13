@@ -154,8 +154,8 @@ collections:
             minimize_collapsed: true
             hint: "MP4 files. Keep clips short; files over ~25 MB make the page slow."
             fields:
-              - { label: "Video file (MP4)", name: src, widget: file, media_folder: videos, public_folder: /videos }
-              - { label: "Cover image", name: poster, widget: image, required: false, media_folder: videos, public_folder: /videos, hint: "Optional. A JPG shown before the video plays. If left blank the first frame of the video is used." }
+              - { label: "Video file (MP4)", name: src, widget: file, media_folder: /videos, public_folder: /videos }
+              - { label: "Cover image", name: poster, widget: image, required: false, media_folder: /videos, public_folder: /videos, hint: "Optional. A JPG shown before the video plays. If left blank the first frame of the video is used." }
               - { label: "Length in seconds", name: durationSeconds, widget: number, value_type: int, min: 1, required: false, hint: "Optional. Shown as a badge on the video. If left blank it is read from the file." }
               - { label: "Description (for screen readers)", name: alt, widget: string }
 

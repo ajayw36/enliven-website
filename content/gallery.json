@@ -306,8 +306,10 @@
       "alt": "Residents gathering in the lounge"
     },
     {
-      "src": "/videos/screenrecording_10-25-2026-21-44-10_1.mov",
-      "alt": "Bollywood Dance "
+      "src": "/videos/clip-19.mp4",
+      "poster": "/videos/clip-19.jpg",
+      "durationSeconds": 9,
+      "alt": "Bollywood dance"
     },
     {
       "src": "/videos/clip-15.mp4",
