@@ -308,6 +308,30 @@
     {
       "src": "/videos/screenrecording_10-25-2026-21-44-10_1.mov",
       "alt": "Bollywood Dance "
+    },
+    {
+      "src": "/videos/clip-15.mp4",
+      "poster": "/videos/clip-15.jpg",
+      "durationSeconds": 76,
+      "alt": "Students dancing for residents in the lounge"
+    },
+    {
+      "src": "/videos/clip-16.mp4",
+      "poster": "/videos/clip-16.jpg",
+      "durationSeconds": 63,
+      "alt": "A resident dancing with students"
+    },
+    {
+      "src": "/videos/clip-17.mp4",
+      "poster": "/videos/clip-17.jpg",
+      "durationSeconds": 32,
+      "alt": "A resident talking with students after the show"
+    },
+    {
+      "src": "/videos/clip-18.mp4",
+      "poster": "/videos/clip-18.jpg",
+      "durationSeconds": 56,
+      "alt": "A resident sharing her thoughts with the audience"
     }
   ]
 }
