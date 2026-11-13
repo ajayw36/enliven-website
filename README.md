@@ -15,6 +15,7 @@ Static site for [enlivenup.org](https://enlivenup.org) — no build step. Hosted
    - **Home page** — headline, intro, photos, numbers, mission text, featured quote, recent moments, partners.
    - **About page** — heading, about text, large photo, founding year, **team members**.
    - **Gallery** — photos and videos.
+   - **Events page** — upcoming events.
    - **Testimonials page** — featured testimonial, testimonial cards.
 3. Change what you need. Every field has a short grey hint under it.
 4. Press **Publish → Publish now** (top right). The site updates within a minute or two. Refresh enlivenup.org to see it.
@@ -30,6 +31,8 @@ Each publish is saved as a change in GitHub with your name on it, so nothing is 
 **Add a photo to the gallery** — Gallery → *Photos* → **Add photos** → *Choose an image* → **Upload** a JPG → add a one-line description → Publish. New items go to the end; drag to reorder. Please resize very large photos before uploading (under ~1 MB each keeps the page fast).
 
 **Add a video** — Gallery → *Videos* → **Add videos** → *Video file* → upload an **MP4**. Keep clips short (a few seconds to a minute; under ~25 MB). *Cover image* and *Length in seconds* are optional: if left blank the site shows the video's first frame and reads the length from the file. Add a description and Publish. Videos appear in the gallery after every two photos, in the order listed.
+
+**Add an event** — Events page → *Events* → **Add events** → name, date, and (optionally) time, location and a short description → Publish. The order in the list does not matter: the site sorts events by date, groups them by month, and hides each one automatically the day after it happens. When nothing is scheduled the page shows the *Message when nothing is scheduled*.
 
 **Add a testimonial** — Testimonials page → *Testimonial cards* → **Add testimonial cards** → label (e.g. the community name), the quote (no quotation marks needed), attribution → Publish. To change the large featured testimonial, edit *Featured testimonial* on the same page.
 
@@ -87,7 +90,7 @@ Every publish is a commit on GitHub. To roll back:
 ```
 index.html        the whole site: template + a small logic class at the bottom
 support.js        the rendering runtime (don't edit)
-content/*.json    ALL editable content — site, home, about, gallery, testimonials
+content/*.json    ALL editable content — site, home, about, gallery, events, testimonials
 admin/            Decap CMS (index.html loads it; config.yml defines the fields)
 photos/ videos/   media (videos/ also holds optional .jpg poster frames)
 assets/           logo
@@ -95,10 +98,10 @@ design/           the original design exploration; context only, not served
 image-slot.js     legacy drag-and-drop photo slot; no longer loaded by index.html
 ```
 
-- `index.html` fetches the five JSON files on load and exposes them to the template (`{{ home.heroSubtitle }}`, `<sc-for list="{{ team }}">`, …). The logic class only shapes data — paragraph splitting, the `+` in the stats, gallery interleaving (one video after every two photos, leftover videos appended), optional video posters/durations. Styling is inline and unchanged from the original design.
+- `index.html` fetches the six JSON files on load and exposes them to the template (`{{ home.heroSubtitle }}`, `<sc-for list="{{ team }}">`, …). The logic class only shapes data — paragraph splitting, the `+` in the stats, gallery interleaving (one video after every two photos, leftover videos appended), optional video posters/durations. Styling is inline and unchanged from the original design.
 - Field names in `admin/config.yml` must match the JSON keys. If you add a field: add it to the JSON, to `config.yml`, and read it in the template.
 - Media paths are root-relative (`/photos/x.jpg`) because Decap writes them that way.
-- Routing is by hash: `#home` `#about` `#gallery` `#testimonials`; `#team` opens About and scrolls to the team.
+- Routing is by hash: `#home` `#about` `#gallery` `#events` `#testimonials`; `#team` opens About and scrolls to the team.
 
 **Run locally**
 ```sh

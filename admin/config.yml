@@ -159,6 +159,26 @@ collections:
               - { label: "Length in seconds", name: durationSeconds, widget: number, value_type: int, min: 1, required: false, hint: "Optional. Shown as a badge on the video. If left blank it is read from the file." }
               - { label: "Description (for screen readers)", name: alt, widget: string }
 
+      # ---------------------------------------------------------------- events
+      - name: events
+        label: Events page
+        file: content/events.json
+        fields:
+          - { label: "Heading", name: title, widget: string }
+          - { label: "Intro", name: intro, widget: text, required: false, hint: "Optional. A sentence or two shown under the heading." }
+          - { label: "Message when nothing is scheduled", name: emptyMessage, widget: string, hint: "Shown when there are no upcoming events." }
+          - label: "Events"
+            name: events
+            widget: list
+            summary: "{{fields.date}} — {{fields.title}}"
+            hint: "The order here does not matter: the site sorts events by date and hides them automatically once the day has passed."
+            fields:
+              - { label: "Event name", name: title, widget: string }
+              - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "MMM D, YYYY", time_format: false, picker_utc: false }
+              - { label: "Time", name: time, widget: string, required: false, hint: "Optional. Typed as it should appear, e.g. 2:00 – 3:00 PM" }
+              - { label: "Location", name: location, widget: string, required: false, hint: "e.g. North Hill, Needham" }
+              - { label: "Description", name: description, widget: text, required: false, hint: "Optional. A sentence or two about the event." }
+
       # ---------------------------------------------------------- testimonials
       - name: testimonials
         label: Testimonials page
