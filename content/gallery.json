@@ -228,22 +228,10 @@
   ],
   "videos": [
     {
-      "src": "/videos/clip-05.mp4",
-      "poster": "/videos/clip-05.jpg",
-      "durationSeconds": 7,
-      "alt": "Classical dancers performing in the lounge"
-    },
-    {
       "src": "/videos/clip-02.mp4",
       "poster": "/videos/clip-02.jpg",
       "durationSeconds": 13,
       "alt": "Student singing and playing electric guitar"
-    },
-    {
-      "src": "/videos/clip-10.mp4",
-      "poster": "/videos/clip-10.jpg",
-      "durationSeconds": 5,
-      "alt": "Student at the grand piano"
     },
     {
       "src": "/videos/clip-04.mp4",
@@ -258,22 +246,10 @@
       "alt": "Students and residents singing together"
     },
     {
-      "src": "/videos/clip-13.mp4",
-      "poster": "/videos/clip-13.jpg",
-      "durationSeconds": 10,
-      "alt": "Student performing for residents"
-    },
-    {
       "src": "/videos/clip-01.mp4",
       "poster": "/videos/clip-01.jpg",
       "durationSeconds": 8,
       "alt": "A resident shares her thoughts after the show"
-    },
-    {
-      "src": "/videos/clip-06.mp4",
-      "poster": "/videos/clip-06.jpg",
-      "durationSeconds": 23,
-      "alt": "Student ensemble introducing their set"
     },
     {
       "src": "/videos/clip-11.mp4",
@@ -304,12 +280,6 @@
       "poster": "/videos/clip-12.jpg",
       "durationSeconds": 3,
       "alt": "Residents gathering in the lounge"
-    },
-    {
-      "src": "/videos/clip-19.mp4",
-      "poster": "/videos/clip-19.jpg",
-      "durationSeconds": 9,
-      "alt": "Bollywood dance"
     },
     {
       "src": "/videos/clip-15.mp4",
