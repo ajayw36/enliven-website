@@ -2,5 +2,18 @@
   "title": "Upcoming events",
   "intro": "",
   "emptyMessage": "No events are scheduled right now. Check back soon.",
-  "events": []
+  "events": [
+    {
+      "title": "Enliven Program @ Waterstone in Wellesley",
+      "date": "2026-12-13",
+      "time": "1:30 - 2:30pm",
+      "description": "A musical program with vocals and instruments, and dancing followed by interactive conversations"
+    },
+    {
+      "title": "Enliven Program at Waterstone in Wellesley",
+      "date": "2027-05-16",
+      "time": "2 - 3pm",
+      "description": "Music and dance followed by conversational interaction"
+    }
+  ]
 }
